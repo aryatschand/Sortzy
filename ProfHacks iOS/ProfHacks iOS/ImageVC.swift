@@ -1,5 +1,5 @@
 //
-//  TrashVC.swift
+//  ImageVC.swift
 //  ProfHacks iOS
 //
 //  Created by Arya Tschand on 2/29/20.
@@ -8,29 +8,22 @@
 
 import UIKit
 
-class TrashVC: UIViewController {
+class ImageVC: UIViewController {
     
-    @IBOutlet weak var TrashFull: UILabel!
-    @IBOutlet weak var TrashSlider: UIProgressView!
+    var date: String = ""
     
-    
-    @IBOutlet weak var RecycleFull: UILabel!
-    @IBOutlet weak var RecycleSlider: UIProgressView!
-    
-    @IBAction func Refresh(_ sender: Any) {
-        refresh()
-    }
-    
-    func refresh() {
-        getStorage(value2: "sup")
-    }
-    
-    var trash: Int = 100
-    var recycle: Int = 100
+    var b64: String = ""
 
+    @IBOutlet weak var image: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+
+    func refresh() {
+        getStorage(value2: date)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,11 +36,10 @@ class TrashVC: UIViewController {
             if (returnval)!
             {
                 DispatchQueue.main.async {
-
-                    self.TrashFull.text = String(self.trash) + "% Full"
-                    self.TrashSlider.setProgress(Float(self.trash)/100.0, animated: true)
-                    self.RecycleFull.text = String(self.recycle) + "% Full"
-                    self.RecycleSlider.setProgress(Float(self.recycle)/100.0, animated: true)
+                    if let decodedData = Data(base64Encoded: self.b64, options: .ignoreUnknownCharacters) {
+                        let decodedimage = UIImage(data: decodedData)
+                        self.image.image = decodedimage as! UIImage
+                    }
                 }
             } else {
                 print(error)
@@ -63,7 +55,7 @@ class TrashVC: UIViewController {
             let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
             
             
-            let url = NSURL(string: "https://7c5a521b.ngrok.io/iphone/storage")!
+            let url = NSURL(string: "https://7c5a521b.ngrok.io/iphone/history/image?date=" + parameters)!
             let request = NSMutableURLRequest(url: url as URL)
             request.httpMethod = "Get"
             
@@ -71,11 +63,7 @@ class TrashVC: UIViewController {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
                 if let returned = String(data: data!, encoding: .utf8) {
-                    print(returned)
-                    var newret: [String] = returned.components(separatedBy: ",")
-                    print(newret)
-                    self.trash = Int(newret[0])!
-                    self.recycle = Int(newret[1])!
+                    self.b64 = returned
                     CompletionHandler(true,nil)
                     
                     //self.Severity.text = "hello"

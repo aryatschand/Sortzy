@@ -15,6 +15,7 @@ class LeaderboardTVC: UITableViewController {
     }
     
     @IBAction func Reload(_ sender: Any) {
+        userArray = []
         refresh()
     }
     
@@ -27,6 +28,7 @@ class LeaderboardTVC: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        userArray = []
         refresh()
     }
     
@@ -53,7 +55,7 @@ class LeaderboardTVC: UITableViewController {
             let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
             
             
-            let url = NSURL(string: "https://1b0d329c.ngrok.io/iphone/leaderboard")!
+            let url = NSURL(string: "https://7c5a521b.ngrok.io/iphone/leaderboard")!
             let request = NSMutableURLRequest(url: url as URL)
             request.httpMethod = "Get"
             
@@ -96,7 +98,7 @@ class LeaderboardTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "row", for: indexPath)
-        cell.textLabel?.text = userArray[indexPath.row]
+        cell.textLabel?.text = userArray[indexPath.row] + " recycled items"
         return cell
     }
 

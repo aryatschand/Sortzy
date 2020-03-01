@@ -10,81 +10,106 @@ import UIKit
 
 class HistoryTVC: UITableViewController {
 
+    func refresh() {
+        getLeader(value2: "sup")
+    }
+    
+    @IBAction func Reload(_ sender: Any) {
+        userArray = []
+        refresh()
+    }
+    
+    
+    var userArray: [String] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        userArray = []
+        refresh()
+    }
+    
+    func getLeader(value2: String) {
+        printMessagesForUser(parameters: value2) {
+            (returnval, error) in
+            if (returnval)!
+            {
+                DispatchQueue.main.async {
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+                    self.tableView.reloadData()
+                }
+            } else {
+                print(error)
+            }
+        }
+        DispatchQueue.main.async { // Correct
+        }
+    }
+    
+    func printMessagesForUser(parameters: String, CompletionHandler: @escaping (Bool?, Error?) -> Void){
+        let json = [parameters]
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+            
+            
+            let url = NSURL(string: "https://7c5a521b.ngrok.io/iphone/history")!
+            let request = NSMutableURLRequest(url: url as URL)
+            request.httpMethod = "Get"
+            
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
+                if let returned = String(data: data!, encoding: .utf8) {
+                    print(returned)
+                    var newret: [String] = returned.components(separatedBy: ",")
+                    for x in newret{
+                        self.userArray.append(x)
+                    }
+                    CompletionHandler(true,nil)
+                    
+                    //self.Severity.text = "hello"
+                } else {
+                }
+                
+                //self.Severity.text = "test"
+                
+            }
+            task.resume()
+        } catch {
+            
+            print(error)
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return userArray.count
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "row", for: indexPath)
+        cell.textLabel?.text = userArray[indexPath.row]
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "click" {
+            let ImageVC = segue.destination as! ImageVC
+            var selectedIndexPath = tableView.indexPathForSelectedRow
+            var rowname: String = userArray[selectedIndexPath!.row]
+            var splitArr: [String] = rowname.components(separatedBy: " - ")
+            ImageVC.date = splitArr[0]
+        }
     }
-    */
 
 }
