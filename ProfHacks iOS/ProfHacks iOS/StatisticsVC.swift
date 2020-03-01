@@ -54,11 +54,14 @@ class StatisticsVC: UIViewController {
             if (returnval)!
             {
                 DispatchQueue.main.async {
-
+                    if Int(self.trash) == 0 && Int(self.recycle) == 0{
+                        self.Percentage.text = "0%"
+                    } else {
+                        self.Percentage.text = String(round(Float(self.recycle)/Float(self.trash + self.recycle) * 100.0)) + "%"
+                    }
                     self.TrashAmt.text = String(self.trash)
                     self.PercentageSlide.setProgress(Float(self.recycle)/Float(self.trash + self.recycle), animated: true)
                     self.RecycleAmt.text = String(self.recycle)
-                    self.Percentage.text = String(round(Float(self.recycle)/Float(self.trash + self.recycle) * 100.0)) + "%"
                     if Float(self.recycle)/Float(self.trash + self.recycle) < 0.5{
                         self.LinkOutlet.isEnabled = true
                         self.LinkOutlet.isHidden = false
@@ -66,6 +69,8 @@ class StatisticsVC: UIViewController {
                         self.LinkOutlet.isEnabled = false
                         self.LinkOutlet.isHidden = true
                     }
+
+                    
                 }
             } else {
                 print(error)

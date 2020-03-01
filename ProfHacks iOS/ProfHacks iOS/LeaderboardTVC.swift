@@ -98,7 +98,7 @@ class LeaderboardTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "row", for: indexPath)
-        cell.textLabel?.text = userArray[indexPath.row]
+        cell.textLabel?.text = userArray[indexPath.row] + " recycled items"
         return cell
     }
 

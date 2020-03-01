@@ -1,10 +1,12 @@
-from clarifai.rest import ClarifaiApp
+import requests
 
-app = ClarifaiApp(api_key='71a594e3144a4ca89c761a6a5504c4a8')
+url = "http://7c5a521b.ngrok.io/iphone/upload"
 
-model = app.public_models.general_model
-response = model.predict_by_filename('bottle.png')
+payload = {}
+files = [
+  ('wallpaper', open('/Users/aryatschand/Documents/7fb566418866a86cf1ddc6306573145c.jpg','rb'))
+]
 
-for x in response['outputs'][0]['data']['concepts']:
-    if x['name'] == "recycling":
-        print("hello")
+response = requests.request("POST", url, data = payload, files = files)
+
+print(response.text.encode('utf8'))
