@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  StatisticsVC.swift
 //  ProfHacks iOS
 //
 //  Created by Arya Tschand on 2/29/20.
@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class StatisticsVC: UIViewController {
+    
 
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+      super.viewDidLoad()
     }
-
+    
+    
 
 }
-

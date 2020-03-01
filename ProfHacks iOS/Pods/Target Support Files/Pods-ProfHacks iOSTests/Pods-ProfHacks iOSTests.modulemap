@@ -1,0 +1,6 @@
+framework module Pods_ProfHacks_iOSTests {
+  umbrella header "Pods-ProfHacks iOSTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

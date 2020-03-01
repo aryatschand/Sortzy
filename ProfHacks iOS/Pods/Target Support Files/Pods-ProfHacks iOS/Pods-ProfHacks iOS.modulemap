@@ -1,0 +1,6 @@
+framework module Pods_ProfHacks_iOS {
+  umbrella header "Pods-ProfHacks iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
