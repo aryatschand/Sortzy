@@ -63,7 +63,7 @@ class TrashVC: UIViewController {
             let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
             
             
-            let url = NSURL(string: "https://1b0d329c.ngrok.io/iphone/storage")!
+            let url = NSURL(string: "https://7c5a521b.ngrok.io/iphone/storage")!
             let request = NSMutableURLRequest(url: url as URL)
             request.httpMethod = "Get"
             

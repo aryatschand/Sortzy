@@ -20,6 +20,8 @@
 		42BA7F93240B0FE000820EED /* HistoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BA7F92240B0FE000820EED /* HistoryTVC.swift */; };
 		42BA7F95240B0FFA00820EED /* StatisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BA7F94240B0FFA00820EED /* StatisticsVC.swift */; };
 		42BA7F97240B100A00820EED /* TrashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BA7F96240B100A00820EED /* TrashVC.swift */; };
+		42BA7F99240B47CE00820EED /* ImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BA7F98240B47CE00820EED /* ImageVC.swift */; };
+		42BA7F9B240BDA5B00820EED /* 1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 42BA7F9A240BDA5B00820EED /* 1024.png */; };
 		5F0EC9780B9E1CED8C01113B /* Pods_ProfHacks_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25DBD192DD7E9AF417869C11 /* Pods_ProfHacks_iOSTests.framework */; };
 		83CC07334828073259DB0CC1 /* Pods_ProfHacks_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9350B8A372562AA590357DC /* Pods_ProfHacks_iOS.framework */; };
 /* End PBXBuildFile section */
@@ -43,7 +45,7 @@
 
 /* Begin PBXFileReference section */
 		25DBD192DD7E9AF417869C11 /* Pods_ProfHacks_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProfHacks_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		42BA7F5B240AD71500820EED /* ProfHacks iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ProfHacks iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		42BA7F5B240AD71500820EED /* Sortzy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sortzy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42BA7F5E240AD71500820EED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42BA7F60240AD71500820EED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		42BA7F65240AD71500820EED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -61,6 +63,8 @@
 		42BA7F92240B0FE000820EED /* HistoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTVC.swift; sourceTree = "<group>"; };
 		42BA7F94240B0FFA00820EED /* StatisticsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsVC.swift; sourceTree = "<group>"; };
 		42BA7F96240B100A00820EED /* TrashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashVC.swift; sourceTree = "<group>"; };
+		42BA7F98240B47CE00820EED /* ImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVC.swift; sourceTree = "<group>"; };
+		42BA7F9A240BDA5B00820EED /* 1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1024.png; path = ../../../../../Downloads/AppIcons/Assets.xcassets/AppIcon.appiconset/1024.png; sourceTree = "<group>"; };
 		5EC3FE2851EC9F014CB73ADD /* Pods-ProfHacks iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProfHacks iOS.debug.xcconfig"; path = "Target Support Files/Pods-ProfHacks iOS/Pods-ProfHacks iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		618963E7427887E23D7ABCC1 /* Pods-ProfHacks iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProfHacks iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ProfHacks iOSTests/Pods-ProfHacks iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		829121F8E9CE23FCD1A2F5CD /* Pods-ProfHacks iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProfHacks iOSTests.release.xcconfig"; path = "Target Support Files/Pods-ProfHacks iOSTests/Pods-ProfHacks iOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -114,7 +118,7 @@
 		42BA7F5C240AD71500820EED /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				42BA7F5B240AD71500820EED /* ProfHacks iOS.app */,
+				42BA7F5B240AD71500820EED /* Sortzy.app */,
 				42BA7F71240AD71800820EED /* ProfHacks iOSTests.xctest */,
 				42BA7F7C240AD71800820EED /* ProfHacks iOSUITests.xctest */,
 			);
@@ -127,11 +131,13 @@
 				42BA7F5E240AD71500820EED /* AppDelegate.swift */,
 				42BA7F60240AD71500820EED /* SceneDelegate.swift */,
 				42BA7F64240AD71500820EED /* Main.storyboard */,
+				42BA7F98240B47CE00820EED /* ImageVC.swift */,
 				42BA7F8E240B0FAA00820EED /* OptionsTVC.swift */,
 				42BA7F92240B0FE000820EED /* HistoryTVC.swift */,
 				42BA7F94240B0FFA00820EED /* StatisticsVC.swift */,
 				42BA7F96240B100A00820EED /* TrashVC.swift */,
 				42BA7F90240B0FCF00820EED /* LeaderboardTVC.swift */,
+				42BA7F9A240BDA5B00820EED /* 1024.png */,
 				42BA7F67240AD71800820EED /* Assets.xcassets */,
 				42BA7F69240AD71800820EED /* LaunchScreen.storyboard */,
 				42BA7F6C240AD71800820EED /* Info.plist */,
@@ -167,7 +173,6 @@
 				618963E7427887E23D7ABCC1 /* Pods-ProfHacks iOSTests.debug.xcconfig */,
 				829121F8E9CE23FCD1A2F5CD /* Pods-ProfHacks iOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -199,7 +204,7 @@
 			);
 			name = "ProfHacks iOS";
 			productName = "ProfHacks iOS";
-			productReference = 42BA7F5B240AD71500820EED /* ProfHacks iOS.app */;
+			productReference = 42BA7F5B240AD71500820EED /* Sortzy.app */;
 			productType = "com.apple.product-type.application";
 		};
 		42BA7F70240AD71800820EED /* ProfHacks iOSTests */ = {
@@ -290,6 +295,7 @@
 			files = (
 				42BA7F6B240AD71800820EED /* LaunchScreen.storyboard in Resources */,
 				42BA7F68240AD71800820EED /* Assets.xcassets in Resources */,
+				42BA7F9B240BDA5B00820EED /* 1024.png in Resources */,
 				42BA7F66240AD71500820EED /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,6 +394,7 @@
 				42BA7F8F240B0FAA00820EED /* OptionsTVC.swift in Sources */,
 				42BA7F97240B100A00820EED /* TrashVC.swift in Sources */,
 				42BA7F91240B0FCF00820EED /* LeaderboardTVC.swift in Sources */,
+				42BA7F99240B47CE00820EED /* ImageVC.swift in Sources */,
 				42BA7F5F240AD71500820EED /* AppDelegate.swift in Sources */,
 				42BA7F61240AD71500820EED /* SceneDelegate.swift in Sources */,
 				42BA7F95240B0FFA00820EED /* StatisticsVC.swift in Sources */,
@@ -572,7 +579,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "aryatschand.ProfHacks-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Sortzy;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -591,7 +598,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "aryatschand.ProfHacks-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Sortzy;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

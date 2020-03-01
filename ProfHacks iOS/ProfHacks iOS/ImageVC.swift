@@ -1,5 +1,5 @@
 //
-//  LeaderboardTVC.swift
+//  ImageVC.swift
 //  ProfHacks iOS
 //
 //  Created by Arya Tschand on 2/29/20.
@@ -8,38 +8,38 @@
 
 import UIKit
 
-class LeaderboardTVC: UITableViewController {
+class ImageVC: UIViewController {
+    
+    var date: String = ""
+    
+    var b64: String = ""
 
-    func refresh() {
-        getLeader(value2: "sup")
-    }
+    @IBOutlet weak var image: UIImageView!
     
-    @IBAction func Reload(_ sender: Any) {
-        userArray = []
-        refresh()
-    }
-    
-    
-    var userArray: [String] = []
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     
+
+    func refresh() {
+        getStorage(value2: date)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
-        userArray = []
         refresh()
     }
     
-    func getLeader(value2: String) {
+    func getStorage(value2: String) {
         printMessagesForUser(parameters: value2) {
             (returnval, error) in
             if (returnval)!
             {
                 DispatchQueue.main.async {
-
-                    self.tableView.reloadData()
+                    if let decodedData = Data(base64Encoded: self.b64, options: .ignoreUnknownCharacters) {
+                        let decodedimage = UIImage(data: decodedData)
+                        self.image.image = decodedimage as! UIImage
+                    }
                 }
             } else {
                 print(error)
@@ -55,7 +55,7 @@ class LeaderboardTVC: UITableViewController {
             let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
             
             
-            let url = NSURL(string: "https://7c5a521b.ngrok.io/iphone/leaderboard")!
+            let url = NSURL(string: "https://7c5a521b.ngrok.io/iphone/history/image?date=" + parameters)!
             let request = NSMutableURLRequest(url: url as URL)
             request.httpMethod = "Get"
             
@@ -63,11 +63,7 @@ class LeaderboardTVC: UITableViewController {
             
             let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
                 if let returned = String(data: data!, encoding: .utf8) {
-                    print(returned)
-                    var newret: [String] = returned.components(separatedBy: ",")
-                    for x in newret{
-                        self.userArray.append(x)
-                    }
+                    self.b64 = returned
                     CompletionHandler(true,nil)
                     
                     //self.Severity.text = "hello"
@@ -84,24 +80,14 @@ class LeaderboardTVC: UITableViewController {
         }
     }
 
-    // MARK: - Table view data source
+    /*
+    // MARK: - Navigation
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return userArray.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "row", for: indexPath)
-        cell.textLabel?.text = userArray[indexPath.row]
-        return cell
-    }
-
-    
+    */
 
 }
