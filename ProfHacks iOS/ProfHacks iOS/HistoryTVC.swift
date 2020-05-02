@@ -24,12 +24,13 @@ class HistoryTVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         userArray = []
         refresh()
+        
     }
     
     func getLeader(value2: String) {
